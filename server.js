@@ -4,7 +4,7 @@ const http = require('http');
 const socketio = require('socket.io');
 const pitch_type = require('./pitch_type');
 
-const TIMEOUT_BETWEEN_EPOCHS_MS = 500;
+const TIMEOUT_BETWEEN_EPOCHS_MS = 100;
 const PORT = 8081;
 
 // util function to sleep for a given ms
@@ -28,10 +28,10 @@ async function run() {
         });
     });
 
-    let numTrainingIterations = 10;
+    let numTrainingIterations = 5;
     for (var i = 0; i < numTrainingIterations; i++) {
         console.log(`Training iterations : ${i+1} / ${numTrainingIterations}`);
-        await pitch_type.model.fitDataset(pitch_type.trainingData, { epochs: 1 });
+        await pitch_type.model.fitDataset(pitch_type.trainingData, { epochs: 5 });
 
         console.log('AccuracyPerClass', await pitch_type.evaluate(true));
         await sleep(TIMEOUT_BETWEEN_EPOCHS_MS);

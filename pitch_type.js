@@ -1,4 +1,4 @@
-const tf = require('@tensorflow/tfjs');
+const tf = require('@tensorflow/tfjs-node');
 
 // util function to normalize a value between a given range.
 function normalize(value, min, max) {
